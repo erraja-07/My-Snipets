@@ -49,8 +49,7 @@ class CategoryTreeConstructor {
 		}
 		return $this->rendered;
 	}
-}
-
+	
 public function categoryTable($data, $y)
 {
 	foreach($data as $cate)
@@ -67,9 +66,7 @@ public function categoryTable($data, $y)
 }
 
 public function formCategoryHierarchy($arrAllCatData = array()) {
-	$objFF 			= 	new FeedFormat();
-	$objTree		= 	new CategoryTreeConstructor($arrAllCatData);
-	$arrCategories	=	$objTree->render();
+	$arrCategories	=	$this->render();
 	$this->categoryTable($arrCategories, 0);
 	$previous_value = array();	
 	$retIdsTemp	=	array();
@@ -127,6 +124,17 @@ public function formCategoryHierarchy($arrAllCatData = array()) {
 	@sort($arrBreadcrubm,SORT_NATURAL | SORT_FLAG_CASE);
 	//echo '<pre>'; print_r($arrBreadcrubm); echo '</pre>'; die;
 	return $arrBreadcrubm;
+}	
 }
+
+// FUNCTION CALLING SECTION
+$obj = new CategoryTreeConstructor
+$arrAllCatData 	= $obj->getAllCategory();
+$downFileName 	= 'All-categories.xls';
+$arrCategories	= array();
+if(count($arrAllCatData))	
+{
+	$arrBreadcrubm = $obj->formCategoryHierarchy($arrAllCatData);
+}			
 
 ?>
